@@ -259,23 +259,68 @@ def most_points_scored
   best_shooter
 end
 
-# def winning_team
-#   most_points = 0
-#   winning_team = ""
+def winning_team
+  team_wins = ""
+  winning_points = 0
   
-#   game_hash.each do |side, team_data|
-#     binding.pry
-#     team_points = 0
-#     team_data.each do |team_attributes, attribute_values|
-#       if team_attributes = :players
-#         attribute_values.each do |player, player_attributes|
-#           player_attributes.each do |player_attribute, value|
-#             if player_attribute == :points
-#               if game_hash[side]
-#             end
-#           end
-#         end
-#       end
-#     end
-#   end
-# end
+  game_hash.each do |side, team_data|
+    max_points = 0
+    team_data.each do |team_attributes, attribute_values|
+      if team_attributes == :players
+        attribute_values.each do |player, player_attributes|
+          player_attributes.each do |player_attribute, value|
+            if player_attribute == :points
+              max_points = max_points + value
+            end
+          end
+        end
+      end
+    end
+    if max_points > winning_points
+      winning_points = max_points
+      team_wins = game_hash[side][:team_name]
+    end
+  end
+  team_wins
+end
+
+def player_with_longest_name
+  longest_name = ""
+  longest_char_count = 0
+  
+  game_hash.each do |side, team_data|
+    team_data.each do |team_attribute, attribute_values|
+      if team_attribute == :players
+        attribute_values.each do |player, player_attributes|
+          if player.length >= longest_char_count
+            longest_char_count = player.length
+            longest_name = player
+          end
+        end
+      end
+    end
+  end
+  longest_name
+end
+
+def long_name_steals_a_ton?
+  had_most_steals = ""
+  has_longest_name = player_with_longest_name
+  max_steals = 0
+  
+  game_hash.each do |side, team_data|
+    team_data.each do |team_attribute, attribute_values|
+      if team_attribute == :players
+        attribute_values.each do |player, player_attributes|
+          player_attributes.each do |player_attribute, value|
+            if player_attribute == :steals && value > max_steals
+              max_steals = value
+              had_most_steals = player
+            end
+          end
+        end
+      end
+    end
+  end
+  true if had_most_steals == has_longest_name
+end
