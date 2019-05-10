@@ -56,7 +56,7 @@ def game_hash
     :team_name => "Charlotte Hornets",
     :colors => ["Purple", "Turquoise"],
     :players => {
-      "Jeff Adrian" =>{
+      "Jeff Adrien" =>{
         :number =>4,
         :shoe =>18,
         :points =>10,
@@ -106,17 +106,22 @@ def game_hash
 }
 end
 # Write your code here!
-def num_points_scored (player)
+ def num_points_scored (player)
     game_hash.collect do |location, data|
       data.each do |k, v|
         if k == :players
-          players.find(player)
-          player.fetch(:points)
+           if k.include?(player)
+           fetch(:points)
         end
+      end
       end
     end
 end
 
+=begin
+def num_points_scored(name)
+    game_hash[:away][:players].fetch(name)
+=end
 
   #  go through both sets of teams, home and away until you find the name, then return the value of points for that player
 =begin
