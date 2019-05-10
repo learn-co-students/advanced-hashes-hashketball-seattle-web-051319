@@ -110,7 +110,7 @@ def num_points_scored (player)
     game_hash.collect do |location, data|
       data.each do |k, v|
         if k == :players
-          :players.find(player)
+          players.find(player)
           player.fetch(:points)
         end
       end
