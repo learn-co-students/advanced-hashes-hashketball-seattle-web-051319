@@ -92,7 +92,7 @@ def game_hash
               :steals =>1,
               :blocks =>1,
               :slam_dunks =>0},
-      "Brenden Haywood" =>{
+      "Brendan Haywood" =>{
                 :number =>33,
                 :shoe =>15,
                 :points =>6,
@@ -107,44 +107,53 @@ def game_hash
 end
 # Write your code here!
  def num_points_scored (player)
-    game_hash.collect do |location, data|
-      data.each do |k, v|
-        if k == :players
-           if k.include?(player)
-           fetch(:points)
-        end
-      end
-      end
-    end
+    name = find_the_players.fetch(player)
+    name.fetch(:points)
 end
 
-=begin
-def num_points_scored(name)
-    game_hash[:away][:players].fetch(name)
-=end
 
+def find_the_players
+    game_hash[:away][:players].merge!(game_hash[:home][:players])
+
+end
+
+def find_the_teams
+    teams_data = game_hash.values
+    
+
+
+end
   #  go through both sets of teams, home and away until you find the name, then return the value of points for that player
-=begin
+
 def shoe_size(player)
-    game_hash
+  name = find_the_players.fetch(player)
+  name.fetch(:shoe)
 end
 
 def team_colors(team)
+    game_hash.collect do |l, td|
+      if td[:team_name] == team
+        :team_name.fetch(:color)
+      end
+    end
 
 end
 
 def team_names
-
+    game_hash.collect do |location, data|
+      if data[:team_name] == team_name
+      end
+    end
 end
 
 def player_numbers(team)
 
 end
 
-def player_stats()
-
+def player_stats(player)
+    name = find_the_players.fetch(player)
 end
 
 def big_shoe_rebounds()
 
-=end
+end
