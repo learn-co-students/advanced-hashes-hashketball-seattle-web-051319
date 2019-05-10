@@ -132,20 +132,18 @@ def team_colors(team)
     end.flatten.compact
 end
 
-def teams 
-  game_hash.values 
-end 
+
 
 def team_names 
-  teams.map{|t| t.fetch(:team_name)}
- end 
+  game_hash.collect do |loc, data|
+    binding.pry
+    fetch(data[:team_name])
 end
 
-=begin def team_names
-  teams.collect do |team|
-      team.fetch(:team_name)
-    end
-=end
+end
+
+
+
 
 def player_numbers(team)
 
