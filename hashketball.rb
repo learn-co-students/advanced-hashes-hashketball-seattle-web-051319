@@ -105,6 +105,7 @@ def game_hash
   }
 }
 end
+
 # Write your code here!
 def num_points_scored (player)
     name = find_the_players.fetch(player)
@@ -132,27 +133,42 @@ def team_colors(team)
     end.flatten.compact
 end
 
-
-
-def team_names 
-  game_hash.collect do |loc, data|
-    binding.pry
-    fetch(data[:team_name])
-end
+def teams
+  game_hash.values
 
 end
 
+def team_names
+    names = []
+    teams.collect do |team|
+      names << team.fetch(:team_name)
 
-
+    end
+    names
+end
 
 def player_numbers(team)
+    jerseys = []
+    teams.collect do |team_data|
+     team_data.collect do |team, values|
+          if values == team
+          values.collect do |person, info|
 
+            jerseys << info[:number]
+
+binding.pry
+        end
+       end
+     end
+
+    end
+    jerseys
 end
 
 def player_stats(player)
-    name = find_the_players.fetch(player)
+   name = find_the_players.fetch(player)
 end
 
-def big_shoe_rebounds()
+def big_shoe_rebounds
 
 end
