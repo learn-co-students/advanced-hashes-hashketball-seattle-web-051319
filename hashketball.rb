@@ -106,7 +106,7 @@ def game_hash
 }
 end
 # Write your code here!
- def num_points_scored (player)
+def num_points_scored (player)
     name = find_the_players.fetch(player)
     name.fetch(:points)
 end
@@ -139,6 +139,7 @@ end 
 def team_names 
   teams.map{|t| t.fetch(:team_name)}
  end 
+end
 
 =begin def team_names
   teams.collect do |team|
