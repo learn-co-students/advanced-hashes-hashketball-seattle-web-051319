@@ -138,7 +138,6 @@ end 
 
 def team_names 
   teams.map{|t| t.fetch(:team_name)}
-end
  end 
 
 =begin def team_names
