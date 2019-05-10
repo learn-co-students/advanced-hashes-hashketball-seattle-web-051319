@@ -142,8 +142,7 @@ def team_names
     names = []
     teams.collect do |team|
       names << team.fetch(:team_name)
-
-    end
+      end
     names
 end
 
@@ -165,19 +164,19 @@ end
 #     end
 #     jerseys
 # end
-def player_numbers(team_name)
-  nums = []
-  game_hash.each do |location, team_stats|
-    if team_stats[:team_name] == team_name
-      team_stats[:players].each do |attribute, data|
-
-          nums.push data[:number]
-
-        end
-      end
-    end
-    nums
-end 
+# def player_numbers(team_name)
+#   nums = []
+#   game_hash.each do |location, team_stats|
+#     if team_stats[:team_name] == team_name
+#       team_stats[:players].each do |attribute, data|
+#
+#           nums.push data[:number]
+#
+#         end
+#       end
+#     end
+#     nums
+# end 
 
 def player_stats(player)
    name = find_the_players.fetch(player)
