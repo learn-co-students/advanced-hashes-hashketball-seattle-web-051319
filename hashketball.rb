@@ -114,15 +114,8 @@ end
 
 def find_the_players
     game_hash[:away][:players].merge!(game_hash[:home][:players])
-
 end
 
-def find_the_teams
-    teams_data = game_hash.values
-    
-
-
-end
   #  go through both sets of teams, home and away until you find the name, then return the value of points for that player
 
 def shoe_size(player)
@@ -133,18 +126,26 @@ end
 def team_colors(team)
     game_hash.collect do |l, td|
       if td[:team_name] == team
-        :team_name.fetch(:color)
+        colors = td[:colors]
+        colors
       end
-    end
-
+    end.flatten.compact
 end
 
-def team_names
-    game_hash.collect do |location, data|
-      if data[:team_name] == team_name
-      end
-    end
+def teams 
+  game_hash.values 
+end 
+
+def team_names 
+  teams.map{|t| t.fetch(:team_name)}
 end
+ end 
+
+=begin def team_names
+  teams.collect do |team|
+      team.fetch(:team_name)
+    end
+=end
 
 def player_numbers(team)
 
