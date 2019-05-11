@@ -65,9 +65,12 @@ describe 'hashketball' do
       end
     end
 
+
+
   describe '#team_names' do
 
     it 'returns the team names' do
+    
       teams = team_names
       expect(teams.size).to eq(2)
       teams.each do |name|
