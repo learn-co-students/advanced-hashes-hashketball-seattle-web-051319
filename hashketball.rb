@@ -146,42 +146,27 @@ def team_names
     names
 end
 
-# def player_numbers(team)
-#     jerseys = []
-#     binding.pry
-#     teams.collect do |team_data|
-#      team_data.collect do |team, values|
-#           if values == team
-#           values.collect do |person, info|
-#
-#             jerseys << info[:number]
-#
-#
-#         end
-#        end
-#      end
-#
-#     end
-#     jerseys
-# end
-# def player_numbers(team_name)
-#   nums = []
-#   game_hash.each do |location, team_stats|
-#     if team_stats[:team_name] == team_name
-#       team_stats[:players].each do |attribute, data|
-#
-#           nums.push data[:number]
-#
-#         end
-#       end
-#     end
-#     nums
-# end 
+def player_numbers(team_name)
+    jerseys = []
+
+    teams.collect do |team_data|
+     team_data.collect do |team, v|
+          if v == team_name
+          team_data[:players].collect do |person, info|
+            jerseys << info[:number]
+        end
+       end
+     end
+    end
+    jerseys
+end
 
 def player_stats(player)
-   name = find_the_players.fetch(player)
+    find_the_players.fetch(player)
 end
 
 def big_shoe_rebounds
-
+     big_shoes = find_the_players.max_by {|player, stats| stats.fetch(:shoe)}
+     big_shoes[1][:rebounds]
+    # pull up the players info, then look for the largest shoe size, then find the number of rebounds for that player
 end
